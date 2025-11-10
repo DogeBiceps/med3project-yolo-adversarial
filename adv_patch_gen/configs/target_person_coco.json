@@ -1,0 +1,87 @@
+{
+  "n_classes": 80,
+  "debug_mode": false,
+  "name": "adv_patch_person_coco",
+
+  "device": "cpu",
+  "weights": "yolov5s.pt",
+  "weights_file": "yolov5s.pt",
+  "data_yaml": "data/coco128.yaml",
+  "target_class": 0,
+  "classes": [ 0 ],
+
+  "target": {
+    "model_weights": "yolov5s.pt",
+    "data_yaml": "data/coco128.yaml",
+    "target_class": 0,
+    "classes": [ 0 ]
+  },
+
+  "image_dir": "data/person_train_onlyperson/images",
+  "label_dir": "data/person_train_onlyperson/labels",
+  "max_labels": 50,
+  "model_in_sz": [ 640, 640 ],
+  "use_even_odd_images": "all",
+  "objective_class_id": 0,
+  "min_pixel_area": 1,
+
+  "patch_alpha": 1.0,
+  "patch_size": [ 300, 300 ],
+  "use_mask": true,
+  "mask_src": "adv_patch_gen/seeds/mask.png",
+  "mask_invert": true,
+  "rotate": false,
+  "scale": true,
+  "mask_shape": [ 300, 300 ],
+
+  "target_size_frac": 0.20,
+  "mul_gau_mean": 0.0,
+  "mul_gau_std": 0.10,
+  "x_off_loc": [ -0.05, 0.05 ],
+  "y_off_loc": [ -0.05, 0.05 ],
+
+  "augment_image": false,
+  "use_mul_add_gau": false,
+  "transform_patches": true,
+  "rotate_patches": true,
+  "random_patch_loc": true,
+
+  "start_lr": 0.2,
+  "n_epochs": 40,
+  "batch_size": 4,
+  "use_amp": false,
+
+  "sal_mult": 0.0,
+  "nps_mult": 0.0,
+  "tv_mult": 0.0,
+  "min_tv_loss": 0.0,
+  "patch_pixel_range": [ 0.0, 1.0 ],
+
+  "patch_img_mode": "RGB",
+  "patch_src": "adv_patch_gen/seeds/dog.png",
+
+  "loss_target": "obj*cls",
+  "class_list": [ "person" ],
+
+  "log_dir": "runs/patch_person",
+  "patch_name": "person_yolov5s",
+  "tensorboard_port": 6006,
+  "tensorboard_batch_log_interval": 10,
+  "patch_save_epoch_freq": 1,
+
+  "val_image_dir": "data/person_val/images",
+  "val_epoch_freq": 5,
+
+  "train": {
+    "dataset_dir": "data/person_val",
+    "save_dir": "runs/patch_person"
+  },
+
+  "evaluation": {
+    "test_images_dir": "data/person_val/images",
+    "save_results_dir": "runs/patch_tests_person"
+  },
+
+  "triplet_printfile": "adv_patch_gen/printable_colors.csv"
+}
+ 
